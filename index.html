@@ -1,11 +1,110 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Asistente Técnico Alstom</title>
+
+<style>
+body{
+    font-family: Arial, sans-serif;
+    background:#f4f4f4;
+    margin:0;
+    padding:20px;
+}
+.container{
+    max-width:800px;
+    margin:auto;
+}
+h1{
+    text-align:center;
+}
+#respuesta{
+    background:white;
+    padding:15px;
+    border-radius:10px;
+    margin-top:15px;
+    min-height:120px;
+}
+input{
+    width:75%;
+    padding:12px;
+}
+button{
+    padding:12px;
+}
+</style>
 </head>
+
 <body>
-<h1>Asistente Técnico Alstom</h1>
-<p>Prueba inicial funcionando correctamente.</p>
+
+<div class="container">
+<h1>🚆 Asistente Técnico Alstom</h1>
+
+<input type="text" id="pregunta" placeholder="Ejemplo: pantógrafo">
+<button onclick="consultar()">Consultar</button>
+
+<div id="respuesta">
+Realiza una consulta técnica.
+</div>
+</div>
+
+<script>
+
+function consultar(){
+
+let p = document.getElementById("pregunta").value.toLowerCase();
+let r = "";
+
+if(p.includes("pantografo") || p.includes("pantógrafo")){
+r = `
+<b>Pantógrafo</b><br><br>
+• Espesor mínimo banda de contacto: 24 mm<br>
+• Fuerza ideal: 9,00 kgf<br>
+• Rango permitido: 8,15 a 10,19 kgf<br>
+• Torque tornillos M8: 15 Nm
+`;
+}
+
+else if(p.includes("aislador")){
+r = `
+<b>Aisladores</b><br><br>
+• Verificar fisuras o golpes<br>
+• Limpiar con Solvo50<br>
+• Torque: 120 Nm<br>
+• Verificar hermeticidad neumática
+`;
+}
+
+else if(p.includes("resistencia")){
+r = `
+<b>Resistencias de freno</b><br><br>
+• Revisar integridad del bastidor<br>
+• Revisar rejillas<br>
+• Revisar aislantes<br>
+• Resistencia nominal: 1,34 Ω ±2%<br>
+• Aislamiento >100 MΩ
+`;
+}
+
+else if(p.includes("pararrayo")){
+r = `
+<b>Pararrayos</b><br><br>
+• Limpiar con Solvo50<br>
+• Torque fijaciones: 33 Nm<br>
+• Torque cable eléctrico: 50 Nm
+`;
+}
+
+else{
+r = "No encontré esa información en el instructivo cargado.";
+}
+
+document.getElementById("respuesta").innerHTML = r;
+
+}
+
+</script>
+
 </body>
 </html>
